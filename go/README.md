@@ -1,0 +1,1 @@
+# Firebase Client Go SDK
