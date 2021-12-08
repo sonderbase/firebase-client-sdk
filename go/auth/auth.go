@@ -304,8 +304,8 @@ type ChangePasswordResponse struct {
 	ExpiresIn        string                   `json:"expiresIn"`
 }
 
-func (auth *Auth) ChangePassword(req *ChangePasswordRequest) (*ChangeEmailResponse, error) {
-	var res ChangeEmailResponse
+func (auth *Auth) ChangePassword(req *ChangePasswordRequest) (*ChangePasswordResponse, error) {
+	var res ChangePasswordResponse
 	err := auth.post(fmt.Sprintf("https://identitytoolkit.googleapis.com/v1/accounts:update?key=%s", auth.firebaseAPIKey), req, &res)
 	if err != nil {
 		return nil, err
