@@ -346,7 +346,7 @@ type GetUserDataRequest struct {
 	IDToken string `json:"idToken"`
 }
 
-type GetUserDataResponse struct {
+type GetUserDataResponseElement struct {
 	LocalID           string                   `json:"localId"`
 	Email             string                   `json:"email"`
 	EmailVerified     bool                     `json:"emailVerified"`
@@ -361,6 +361,8 @@ type GetUserDataResponse struct {
 	CreatedAt         string                   `json:"createdAt"`
 	CustomAuth        bool                     `json:"customAuth"`
 }
+
+type GetUserDataResponse []GetUserDataResponseElement
 
 func (auth *Auth) GetUserData(req *GetUserDataRequest) (*GetUserDataResponse, error) {
 	var res GetUserDataResponse
