@@ -362,7 +362,9 @@ type GetUserDataResponseElement struct {
 	CustomAuth        bool                     `json:"customAuth"`
 }
 
-type GetUserDataResponse []GetUserDataResponseElement
+type GetUserDataResponse struct {
+	Users []GetUserDataResponseElement `json:"users"`
+}
 
 func (auth *Auth) GetUserData(req *GetUserDataRequest) (*GetUserDataResponse, error) {
 	var res GetUserDataResponse
