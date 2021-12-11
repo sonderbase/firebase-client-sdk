@@ -306,7 +306,7 @@ func (auth *Auth) ChangeEmail(req *ChangeEmailRequest) (*ChangeEmailResponse, er
 type ChangePasswordRequest struct {
 	IDToken           string `json:"idToken"`
 	Password          string `json:"password"`
-	ReturnSecureToken string `json:"returnSecureToken"`
+	ReturnSecureToken bool   `json:"returnSecureToken"`
 }
 
 type ChangePasswordResponse struct {
