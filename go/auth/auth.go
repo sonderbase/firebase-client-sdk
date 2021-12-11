@@ -3,14 +3,19 @@ package auth
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
-var (
-	ErrNon200StatusCode = errors.New("non-200 status code")
-)
+type ResponseError struct {
+	StatusCode int
+	Content    []byte
+}
+
+func (err *ResponseError) Error() string {
+	return string(err.Content)
+}
 
 type Auth struct {
 	firebaseAPIKey string
@@ -32,7 +37,17 @@ func (auth *Auth) post(url string, request, response interface{}) error {
 		return err
 	}
 	if res.StatusCode != 200 {
-		return ErrNon200StatusCode
+		b, err := ioutil.ReadAll(res.Body)
+		if err != nil {
+			return &ResponseError{
+				StatusCode: res.StatusCode,
+				Content:    []byte(err.Error()),
+			}
+		}
+		return &ResponseError{
+			StatusCode: res.StatusCode,
+			Content:    b,
+		}
 	}
 	decoder := json.NewDecoder(res.Body)
 	err = decoder.Decode(response)
