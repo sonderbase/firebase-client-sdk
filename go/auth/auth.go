@@ -504,6 +504,7 @@ type ConfirmEmailVerificationRequest struct {
 }
 
 type ConfirmEmailVerificationResponse struct {
+	LocalID          string                   `json:"localId"`
 	Email            string                   `json:"email"`
 	DisplayName      string                   `json:"displayName"`
 	PhotoURL         string                   `json:"photoUrl"`
