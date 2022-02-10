@@ -1,3 +1,3 @@
-module github.com/secretlifelab/firebase-client-sdk/go
+module github.com/sonderbase/firebase-client-sdk/go
 
 go 1.17
